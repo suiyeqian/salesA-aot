@@ -1,0 +1,156 @@
+
+.time-progress {
+  height: 1.04rem;
+  padding-top: .31rem;
+  border-bottom: 1px solid #34353c;
+  margin-bottom: .48rem;
+}
+// 当日销售业绩
+.day-performance {
+  margin-top: .21rem;
+  margin-bottom: .91rem;
+  padding: .96rem .56rem .8rem .53rem;
+  span {
+    display: inline-block;
+  }
+}
+.performance-list {
+  margin-bottom: .67rem;
+}
+.performance-item{
+  position: relative;
+  overflow: hidden;
+  height: .79rem;
+  margin-bottom: -.07rem;
+}
+.dash-line{
+  border-top: 1px dashed #fdcb04;
+  width: 100%;
+  position: absolute;
+  top: .39rem;
+  left: 0;
+}
+.item-name{
+  width: 2rem;
+  line-height: .79rem;
+  vertical-align: text-bottom;
+  position: absolute;
+}
+.item-value {
+  width: 1.2rem;
+  font-size: .53rem;
+  position: absolute;
+  right: 0;
+}
+//月销售业绩总览
+.overview{
+  margin-top: .5rem;
+  margin-bottom: .8rem;
+  padding-right: 15px;
+}
+.sale-progress-chart{
+  height: 4.53rem;
+}
+.index-item{
+  height: .79rem;
+  font-size: .36rem;
+  padding: .1rem 0;
+  background: -webkit-linear-gradient(top,  #25293a 0%,#242134 100%);
+  background: -o-linear-gradient(top,  #25293a 0%,#242134 100%);
+  background: -ms-linear-gradient(top,  #25293a 0%,#242134 100%);
+  background: linear-gradient(to bottom,  #25293a 0%,#242134 100%);
+  margin-bottom: .32rem;
+}
+.index-value{
+  color: #f2f2f3;
+}
+.target-val {
+  padding-left: 0;
+}
+// 申请单
+.requisition-tracking, .overdue-reminder {
+  margin-top: .53rem;
+  overflow: hidden;
+  min-height: 6rem;
+}
+.table td.contract-no {
+  font-size: .21rem;
+  max-width: 2.4rem;
+}
+.table td.date, .table td.amount {
+  min-width: 49px;
+}
+.table td.borrower {
+  min-width: 38px;
+}
+.table td.overdue {
+  font-weight: bold;
+  color: #fe4504;
+}
+.no-record {
+  font-size: .53rem;
+  font-weight: bolder;
+  color: #fdbf04;
+  margin-top: 25%;
+}
+// .table tbody{
+//   min-height: 300px!important;
+// }
+.slide-indicators{
+  position: relative;
+  ol {
+      position: relative;
+      right: 0;
+      // bottom: -14px;
+      left: 0;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: center;
+      justify-content: center;
+      padding-left: 0;
+      margin-right: 15%;
+      margin-left: 15%;
+      // margin-bottom: .67rem;
+      list-style: none;
+  }
+}
+.slide-indicators li.active{
+  background-color: #fdbf04;
+}
+.slide-indicators li {
+  position: relative;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  background-color: hsla(0,0%,100%,.5);
+}
+
+// 生日提醒
+.birthday-reminder {
+  padding: .4rem .51rem;
+  margin-top: .4rem;
+  margin-bottom: 18px;
+}
+.reminder-item:not(:last-child){
+  position: relative;
+  overflow: hidden;
+  margin-bottom: .23rem;
+}
+.reminder-item .reminder-date{
+  padding-right: 0;
+}
+.reminder-date::before{
+  content: '';
+  display: inline-block;
+  border: .11rem solid #fdbf04;
+  border-radius: 50%;
+  margin-right: .29rem;
+}
+.reminder-item .custlist {
+  padding-left: .27rem;
+}

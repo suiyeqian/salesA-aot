@@ -1,0 +1,164 @@
+
+<div class="row time-progress">
+  <div class="col-6 text-left">
+    {{achievement.curDay}}
+  </div>
+  <div class="col-6 text-right">
+    本月时间进度：{{achievement.dateRate ? achievement.dateRate : 0}}%
+  </div>
+</div>
+<!-- <my-ribbon ribbonNum="1" contentTxt="当日销售业绩"></my-ribbon>
+<div class="has-grey-bgc day-performance">
+  <div class="performance-list">
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">申请单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.appNum}}</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">通过单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.passNum}}</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">拒绝单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.refuseNum}}</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">放款单量</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.loanNum}}</span>
+    </p>
+    <p class="performance-item">
+      <span class="dash-line"></span>
+      <span class="item-name text-left has-grey-bgc">通过率</span>
+      <span class="item-value text-right font-red has-grey-bgc">{{achievement.passRate}}%</span>
+    </p>
+  </div>
+  <div class="amount text-center">
+    <p class="amount-value font-yellow">{{achievement.amt | number}}</p>
+    <span>合同金额</span>
+  </div>
+</div> -->
+
+<my-ribbon ribbonNum="1" contentTxt="本月销售业绩"></my-ribbon>
+<div class="row overview">
+  <div class="col-6">
+    <div class="chart-wrap">
+      <div echarts [options]="saleProgressOption"  class="sale-progress-chart"></div>
+    </div>
+    <div class="text-center">
+      <p class="font-yellow amount-value">{{achievement.monAmt | number}}</p>
+      <span>合同金额</span>
+    </div>
+  </div>
+  <div class="col-6 right-list">
+    <div class="index-item row">
+      <span class="col-7 text-left">本月目标</span>
+      <span class="col-5 text-right index-value target-val">{{ achievement.monGoalAmt | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-7 text-left">申请单量</span>
+      <span class="col-5 text-right index-value">{{ achievement.monAppNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-7 text-left">通过单量</span>
+      <span class="col-5 text-right index-value">{{ achievement.monPassNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-7 text-left">拒绝单量</span>
+      <span class="col-5 text-right index-value">{{ achievement.monRefuseNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-7 text-left">放款单量</span>
+      <span class="col-5 text-right index-value">{{ achievement.monLoanNum | number}}</span>
+    </div>
+    <div class="index-item row">
+      <span class="col-7 text-left">通过率</span>
+      <span class="col-5 text-right index-value">{{ achievement.monPassRate }}%</span>
+    </div>
+  </div>
+</div>
+<my-month-performance [timeProgress]="achievement.dateRate"></my-month-performance>
+
+<my-ribbon ribbonNum="2" contentTxt="风控情况"></my-ribbon>
+<my-risk-control></my-risk-control>
+
+
+<my-ribbon ribbonNum="3" contentTxt="申请单追踪"></my-ribbon>
+<div class="requisition-tracking" (swipeleft)="swipe(pfmtckCurPage, $event.type, 'performancetrack')" (swiperight)="swipe(pfmtckCurPage, $event.type, 'performancetrack')">
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th>申请日期 </th> -->
+        <th>申请编号</th>
+        <th>借款人</th>
+        <th>产品</th>
+        <th>金额</th>
+        <th>状态</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center" *ngFor = "let item of displayPerformance">
+        <!-- <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td> -->
+        <td class="contract-no">{{item.cntNum}}</td>
+        <td class="borrower">{{item.borrower}}</td>
+        <td>{{item.product}}</td>
+        <td>{{item.amt | number}}</td>
+        <td>{{item.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="text-center no-record" *ngIf="displayPerformance.length === 0" >暂无申请单</h3>
+</div>
+<div class="slide-indicators" *ngIf="displayPerformance.length > 0">
+  <ol>
+    <li *ngFor = "let i of pfmtckPages" [class.active]="i == pfmtckCurPage-1"></li>
+  </ol>
+</div>
+
+<my-ribbon ribbonNum="4" contentTxt="逾期提醒"></my-ribbon>
+<div class="overdue-reminder" (swipeleft)="swipe(overduermdCurPage, $event.type, 'overdueremind')" (swiperight)="swipe(overduermdCurPage, $event.type, 'overdueremind')">
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th>放款日期 </th> -->
+        <th>合同号</th>
+        <th>借款人</th>
+        <th>借款金额</th>
+        <th>本期应还</th>
+        <th>状态</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center" *ngFor = "let item of displayOverdue">
+        <!-- <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td> -->
+        <td class="contract-no">{{item.cntNum}}</td>
+        <td class="borrower">{{item.borrower}}</td>
+        <td class="amount">{{item.amt | number}}</td>
+        <td class="amount">{{item.repayAmt | number}}</td>
+        <td *ngIf="item.status == 0">{{item.days}}日内还款</td>
+        <td *ngIf="item.status == 1" class="overdue">已逾期{{item.days}}天</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 class="text-center no-record" *ngIf="displayOverdue.length === 0" >暂无逾期提醒</h3>
+</div>
+<div class="slide-indicators"  *ngIf="displayOverdue.length > 0">
+  <ol>
+    <li [class.active]="overduermdCurPage == 1"></li>
+    <li [class.active]="overduermdCurPage != 1 && overduermdCurPage != overduermdPages.length" *ngIf="overduermdPages.length > 2"></li>
+    <li [class.active]="overduermdCurPage == overduermdPages.length" *ngIf="overduermdPages.length > 1"></li>
+  </ol>
+</div>
+
+<my-ribbon ribbonNum="5" contentTxt="客户生日提醒"></my-ribbon>
+<div class="has-grey-bgc birthday-reminder">
+  <div class="reminder-list">
+    <div class="reminder-item row" *ngFor="let item of custBdReminds">
+      <span class="text-left reminder-date col-3">{{item.dateStr}}</span>
+      <div class="col-9 custlist"><span  *ngFor="let cus of item.custList;let i = index;">{{cus.name}}<span *ngIf="i != item.custList.length-1">、</span></span></div>
+    </div>
+  </div>
+</div>

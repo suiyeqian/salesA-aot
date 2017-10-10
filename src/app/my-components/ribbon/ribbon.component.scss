@@ -1,0 +1,92 @@
+:host {
+  overflow-y:visible;
+}
+.ribbon-wrap {
+  position: relative;
+  height: .93rem;
+  overflow-x: hidden;
+}
+#ribbon {
+	font: normal .37rem/.8rem Cambria,Georgia,Times,sans-serif;
+	color: #f2f2f3;
+	width: 3.2rem;
+	position: relative;
+  top: .07rem;
+	background: #272a39;
+  margin-left: .4rem;
+}
+#ribbon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 0;
+  height: 0;
+  border: .4rem solid #272a39;
+  border-left-color: transparent;
+  margin-right: -.4rem;
+}
+#ribbon::after {
+	content:"";
+	position:absolute;
+	top:0px;
+	left: 100%;
+	width:0;
+	height:0;
+	border:.4rem solid transparent;
+	border-left-color: #272a39;
+
+}
+.base{
+  padding-left: .85rem;
+  padding-right: .07rem;
+}
+.base::before {
+  content: '';
+  position: absolute;
+  border-top: 1px dashed #828187;
+  border-bottom: 1px dashed #828187;
+  top: .07rem;
+  bottom: .07rem;
+  left: 0;
+  right: 0;
+}
+.ribbon-num{
+  width: .53rem;
+  height: .93rem;
+  line-height: .93rem;
+  background-color: #fdcb04;
+  position: absolute;
+  top:-.07rem;
+  left: .19rem;
+  font-size: .8rem;
+  font-family: "Helvetica Neue", Helvetica, Times;
+  font-weight: bolder;
+  font-style: italic;
+  text-shadow: rgba(34, 34, 34, .3) 0px 1px 0px;
+  color: #222;
+}
+.ribbon-num::before, .ribbon-num::after{
+  content: '';
+  position: absolute;
+  left: -.07rem;
+  border-style: solid;
+  border-color: transparent;
+}
+.ribbon-num::before {
+  border-width: .07rem .07rem 0px 0;
+  border-right-color: #b37312;
+  top: 0;
+}
+.ribbon-num::after {
+  border-width: 0 .07rem .07rem 0;
+  border-right-color: #b37312;
+  bottom: 0;
+}
+.dashed{
+  position: absolute;
+  width:100%;
+  top:50%;
+  left: 4.08rem;
+  border-top: 1px dashed #828187;
+}

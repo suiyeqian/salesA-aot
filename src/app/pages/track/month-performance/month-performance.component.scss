@@ -1,0 +1,212 @@
+// main
+i.bonus-status{
+  width: .36rem;
+  height: .21rem;
+  display: inline-block;
+  margin-left: .07rem;
+  margin-bottom: -.04rem;
+  background-image: url(/assets/img/eye-close.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+i.bonus-status.show{
+  width: .36rem;
+  height: .30rem;
+  background-image: url(/assets/img/eye.png);
+}
+// 周业绩趋势图
+.trend-chart{
+  height: 300px;
+}
+// 业绩预测
+.performance-forecast {
+  padding: .83rem .51rem;
+  margin-bottom: .91rem;
+}
+.forecast-list {
+  margin-bottom: .67rem;
+}
+.forecast-item{
+  position: relative;
+  overflow: hidden;
+  height: .38rem;
+  margin-bottom: .43rem;
+}
+.dash-line{
+  border-top: 1px dashed #fdcb04;
+  width: 100%;
+  position: absolute;
+  top: .16rem;
+  left: 0;
+}
+.item-name{
+  width: 3.7rem;
+  height: .38rem;
+  line-height: .38rem;
+  font-size: 12px;
+  position: absolute;
+}
+.item-name::before{
+  content: '';
+  display: inline-block;
+  border: .11rem solid #fdbf04;
+  border-radius: 50%;
+  margin-right: .33rem;
+}
+.item-value {
+  width: 1.6rem;
+  font-size: 12px;
+  line-height: .32rem;
+  position: absolute;
+  right: 0;
+}
+
+.pay-percent{
+  position: relative;
+  margin-bottom: 1.33rem;
+  margin-top: 1.33rem;
+}
+.percent-bar {
+  height: .72rem;
+  width: 100%;
+  border-radius: 3px;
+  background: -webkit-linear-gradient(left,  #fdbf04 0%,#fb9a02 100%);
+  background: -o-linear-gradient(left,  #fdbf04 0%,#fb9a02 100%);
+  background: -ms-linear-gradient(left,  #fdbf04 0%,#fb9a02 100%);
+  background: linear-gradient(to right,  #fdbf04 0%,#fb9a02 100%);
+}
+.royalty-coefficient{
+  display: inline-block;
+  line-height: .72rem;
+  color: #000;
+  font-size: .24rem;
+  text-align: center;
+  border-right: 1px solid #272a39;
+  &:nth-child(1) { width: 12%; }
+  &:nth-child(2) { width: 15%; }
+  &:nth-child(3) { width: 18%; }
+  &:nth-child(4) { width: 21%; }
+  &:last-child { width: 28%; border-right-width: 0 }
+}
+.interval-num{
+  font-size: .24rem;
+  span{
+    position: absolute;
+    top:.83rem;
+    left: 0;
+    &:nth-child(2){ left: 11% }
+    &:nth-child(3){ left: 26% }
+    &:nth-child(4){ left: 45% }
+    &:nth-child(5){ left: 67% }
+  }
+}
+#my-percent{
+  color: #fe4504;
+  position: absolute;
+  top: -1px;
+  // left: 73%;
+  span {
+    position: relative;
+    top:-.13rem;
+    left:.13rem;
+  }
+}
+#my-real-percent {
+  color: #638c0b;
+  position: absolute;
+  top: -.55rem;
+  span {
+    position: relative;
+    top:-1.7rem;
+  }
+}
+.cursor{
+  height: 1.33rem;
+}
+.cursor img{
+  width: 10px;
+  position: relative;
+  left: -5.5px;
+}
+.bonus-box .col-6:first-child{
+  // padding-left: .5rem;
+  padding-right: 0;
+}
+.bonus-val {
+  font-size: 16px;
+}
+.bonus-hide {
+  vertical-align: middle;
+}
+.remark {
+  margin-top: .27rem;
+  font-size: .21rem;
+}
+
+// 考核预警
+.early-warning {
+  padding: .61rem .51rem;
+  margin-bottom: .91rem;
+}
+.early-warning h5 {
+  font-size: .32rem;
+}
+.early-warning h5::before {
+  content: '';
+  display: inline-block;
+  border: .11rem solid #fdbf04;
+  border-radius: 50%;
+  margin-right: .33rem;
+}
+.time-line{
+  font-size: .27rem;
+  margin-right: 5px;
+  margin-top: .27rem;
+  display: inline-flex;
+}
+.time-line, .volume{
+  margin-left: 1rem;
+  width: 75%;
+}
+.volume-progress {
+  margin-bottom: .33rem;
+}
+.volume-progress span{
+  display: inline-block;
+  vertical-align: sub;
+  line-height: 11px;
+}
+.volume-key{
+  text-align: center;
+  width: 13%;
+  position: relative;
+}
+.unit {
+  font-size: .21rem;
+}
+.volume-val {
+  width: 10%;
+}
+.volume-progress-bar{
+  display: inline-block;
+  width: 74%;
+}
+.early-warning h3{
+  font-size: .35rem;
+  font-weight: bold;
+  margin: .56rem auto 0;
+}
+.obsolete {
+  margin-top: .56rem;
+}
+.progress-group{
+  margin-left: 13.5%;
+  width: 75%;
+  display: inline-block;
+  margin-top: .13rem;
+}
+.obsolete-progress-bar{
+  display: inline-block;
+  width: 50%;
+  margin-left: -.06rem;
+}

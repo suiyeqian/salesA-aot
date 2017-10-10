@@ -1,0 +1,51 @@
+.risk-control {
+  overflow: hidden;
+  margin-bottom: .51rem;
+  .row {
+    margin-bottom: .85rem;
+  }
+}
+.chart-wrap{
+  height: 3rem;
+  overflow-y: hidden;
+}
+.gauge-chart{
+  height: 6rem;
+  margin-top: -.4rem;
+}
+.right-box {
+  padding: .67rem .24rem;
+  margin-left: -.16rem;
+}
+.risk-item {
+  height: auto;
+}
+.risk-item:not(:last-child) {
+  margin-bottom: .93rem
+}
+.risk-name{
+  line-height: .67rem;
+  // font-size:.29rem;
+  color: #ccc;
+}
+.risk-name::before{
+  content: '';
+  display: inline-block;
+  border: .11rem solid #fdbf04;
+  border-radius: 50%;
+  margin-right: .19rem;
+}
+.risk-val{
+  display: inline-block;
+  float: right;
+  padding-right: 9px;
+  font-size: .45rem;
+  font-weight: bold;
+}
+.c-m2 {
+  font-size: .55rem;
+}
+.c-m2-key{
+  // font-size: 0.45rem;
+  color: #ccc!important;
+}
