@@ -2,8 +2,8 @@
   <my-ribbon ribbonNum="1" contentTxt="我的排名"></my-ribbon>
   <div class="my-rank" [ngClass]="imgClass">
     <img [src]="imgUrl" alt="">
-    <span class="percent-num font-yellow" *ngIf="myRank.rank < 4" [class.rankOne]="myRank.percent == 100">{{100 - myRank.percent}}<span class="percent-symble">%</span></span>
-    <span class="rank-num" *ngIf="myRank.rank > 3" [class.rankOne]="myRank.percent == 100">{{myRank.rank}}</span>
+    <span class="percent-num font-yellow" *ngIf="myRank.rank < 4" [class.rankOne]="myRank.percent == 0">{{100 - myRank.percent}}<span class="percent-symble">%</span></span>
+    <span class="rank-num" *ngIf="myRank.rank > 3">{{myRank.rank}}</span>
   </div>
   <my-ribbon ribbonNum="2" contentTxt="TOP 10"></my-ribbon>
   <div class="table-wrap">

@@ -4,14 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { TrackComponent } from './track/track.component';
 
-// import { UserService } from '../core/services/user.service';
+import { AuthGuard } from '../core/services/auth-guard.service';
 import { UserInfoResolver }   from './user-info-resolver.service';
 
 const pagesRoutes: Routes = [
   {
     path: 'pages',
     component: PagesComponent,
-    // canActivate: [ UserService ],
+    canActivate: [ AuthGuard ],
     resolve: { userInfo: UserInfoResolver },
     children: [
       {

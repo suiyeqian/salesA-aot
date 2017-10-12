@@ -1,5 +1,6 @@
 .review {
   padding-top:.48rem;
+  margin-bottom:.48rem;
 }
 .chart-wrap {
   min-width: 320px;
@@ -7,4 +8,7 @@
 }
 .line-chart {
   height: 260px;
+}
+.review .remark{
+  padding-left:.5rem;
 }
