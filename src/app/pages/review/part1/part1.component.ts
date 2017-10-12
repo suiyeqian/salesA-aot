@@ -17,7 +17,7 @@ export class LastMonthReviewComponent implements OnInit {
   pfmcComposition = [];
   legendList = [];
   // legendColorList = ['#f3c143', '#ec7c30', '#b3b239', '#dd9261'];
-  legendColorList = ['rgba(255,144,0,1)', 'rgba(254,183,5,1)', 'rgba(254,216,26,1)', '#fd6204'];
+  legendColorList = ['rgba(255,144,0,1)', 'rgba(254,183,5,1)', 'rgba(254,216,26,1)', '#fd6204', '#f95959', '#98d083', '#ebcbae'];
   loanOrderOption: any;
   contractValueOption: any;
 

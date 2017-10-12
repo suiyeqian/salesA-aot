@@ -90,7 +90,7 @@ export class TrackComponent implements OnInit, AfterContentInit {
             this.displayOverdue =
             this.overduereminds.slice(this.pageLength * (this.overduermdCurPage - 1), this.pageLength * this.overduermdCurPage);
           }
-          this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 300);
+          this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 230);
         });
   }
 

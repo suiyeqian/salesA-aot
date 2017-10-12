@@ -19,12 +19,6 @@ export class UserInfoResolver implements Resolve<any> {
         alert('用户不存在！');
         return null;
       }
-      // if (crisis) {
-      //   return crisis;
-      // } else { // id not found
-      //   this.router.navigate(['/crisis-center']);
-      //   return null;
-      // }
     });
   }
 }
