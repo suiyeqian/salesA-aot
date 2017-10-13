@@ -16,15 +16,15 @@ export class PagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser();
+    // this.getUser();
   }
 
-  getUser(): void {
-    this.route.data
-    .subscribe((data) => {
-      sessionStorage.clear();
-      // this.spinner.hide();
-      sessionStorage.setItem('user', JSON.stringify(data.userInfo));
-    });
-  }
+  // getUser(): void {
+  //   this.route.data
+  //   .subscribe((data) => {
+  //     sessionStorage.clear();
+  //     // this.spinner.hide();
+  //     sessionStorage.setItem('user', JSON.stringify(data.userInfo));
+  //   });
+  // }
 }

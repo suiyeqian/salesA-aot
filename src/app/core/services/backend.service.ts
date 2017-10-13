@@ -5,8 +5,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackendService {
-  private baseUrl = 'http://10.17.2.177:9886/bdsa/';
-  // private baseUrl = '/bdsa/';
+  // private baseUrl = 'http://10.17.2.177:9886/bdsa/';
+  private baseUrl = '/bdsa/';
   jsonHeaders = new Headers({
     'Content-Type': 'application/json',
     // 'X-Requested-SystemCode' : 'neo_mdms',

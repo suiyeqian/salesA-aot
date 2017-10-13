@@ -5,9 +5,10 @@ import * as CryptoJS from 'crypto-js';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  private baseUrl = 'http://10.17.2.110:8989/servegateway' + '/rest/bduser/weixin/staff/sso';
-  private redirectUrl =
-  'http://10.17.2.110:8989/servegateway/wxgateway/oauth2/authorize?appId=69&redirectUri=http%3a%2f%2f10.17.2.177%3a8886%2fbdsa%2f';
+  private baseUrl = 'http://10.17.2.110:8989/servegateway';
+  private requestUrl = this.baseUrl + '/rest/bduser/weixin/staff/sso';
+  private redirectUri = encodeURIComponent('http://10.17.2.177:8886/bdsa/').toLowerCase();
+  private redirectUrl = this.baseUrl + '/wxgateway/oauth2/authorize?appId=69&redirectUri=' + this.redirectUri;
   headerObj = {
     'X-Requested-SystemCode' : 'neo_bdsa',
     'X-Requested-APICode': 'staff_weixin_sso',
@@ -16,7 +17,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     'X-Requested-Version': '1.0'
   };
   private headers = new Headers(this.headerObj);
-  private options = new RequestOptions({ headers: this.headers});
+  // private options = new RequestOptions({ headers: this.headers});
 
   constructor(
     private http: Http,
@@ -26,11 +27,40 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     let reg = new RegExp('(^|&)code=([^&]*)(&|$)');
     let r = window.location.search.substr(1).match(reg);
     if (r) {
-      this.headers.set('Content-Type', 'application/x-www-form-urlencoded');
-      this.headers.set('X-Requested-Token', r[2]);
+      let sortable = [];
+      for (let p of Object.keys(this.headerObj)) {
+        let nvp = this.headerObj[p];
+        sortable.push([ p + ' ' + nvp, [p, nvp]]);
+      }
+      sortable.push(['X-Requested-Token' + ' ' + r[2], ['X-Requested-Token', r[2]]]);
+      sortable.push(['appId' + ' ' + '69', ['appId', '69']]);
+      sortable.sort(function(a, b) {
+          if (a[0] < b[0]) { return -1; }
+          if (a[0] > b[0]) { return 1; }
+          return 0;
+      });
+      let sorted = [];
+      for (let s of sortable) { sorted.push(s[1]); }
+      let form = '';
+      for (let p of sorted){
+        let value = p[1];
+        if (value == null) { value = ''; }
+        if (form !== '') { form += '&'; }
+        form += this.percentEncode(p[0]) + '=' + this.percentEncode(value);
+      }
+      let result = 'POST' + '&' + this.percentEncode(this.requestUrl) + '&' + encodeURIComponent(form);
+      let signature = CryptoJS.HmacSHA1(result, result).toString(CryptoJS.enc.Base64);
+      this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+      this.headers.append('X-Requested-Token', r[2]);
+      this.headers.append('X-Requested-Authorization', signature);
       return this.getTicket().then(res => {
+        alert(res);
           if (res.success) {
             sessionStorage.setItem('accessToken', res.data.accessToken);
+            sessionStorage.setItem('user', JSON.stringify(res.data));
+            alert(JSON.stringify(res.data));
+            // sessionStorage.setItem('refreshToken', res.data.refreshToken);
+            // sessionStorage.setItem('weiXinDeviceId', res.data.weiXinDeviceId);
             this.router.navigate(['/pages/track']);
             return true;
           } else {
@@ -44,35 +74,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       if (sessionStorage.getItem('accessToken')) {
         return true;
       } else {
-        let sortable = [];
-        for (let p of Object.keys(this.headerObj)) {
-          let nvp = this.headerObj[p];
-          sortable.push([ p + ' ' + nvp, [p, nvp]]);
-        }
-        sortable.push(['X-Requested-Token' + ' ' + 'eMiS7KAlEpe_BrazGS6Sduv5CjmXQTxpMTGOdwRtwVA',
-                       ['X-Requested-Token', 'eMiS7KAlEpe_BrazGS6Sduv5CjmXQTxpMTGOdwRtwVA']
-                     ]);
-        sortable.push(['appId' + ' ' + '69', ['appId', '69']]);
-        sortable.sort(function(a, b) {
-            if (a[0] < b[0]) { return  -1; }
-            if (a[0] > b[0]) { return 1; }
-            return 0;
-        });
-        let sorted = [];
-        for (let s of sortable) { sorted.push(s[1]); }
-        let form = '';
-        for (let p of sorted){
-          let value = p[1];
-          if (value == null) { value = ''; }
-          if (form !== '') { form += '&'; }
-          form += this.percentEncode(p[0]) + '=' + this.percentEncode(value);
-        }
-        let result = 'POST' + '&' + this.percentEncode(this.baseUrl) + '&' + encodeURIComponent(form);
-        let signature = CryptoJS.HmacSHA1(result, result).toString(CryptoJS.enc.Base64);
-        console.log(signature);
-        return true;
-        // sessionStorage.clear();
-        // window.location.href = this.redirectUrl;
+        // console.log(this.redirectUrl);
+        // return true;
+        sessionStorage.clear();
+        window.location.href = this.redirectUrl;
       }
     }
   }
@@ -103,13 +108,18 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   getTicket(): Promise<any> {
-    return this.http.post(this.baseUrl, 'appId=69', this.options)
+    return this.http.post(this.requestUrl, 'appId=69', { headers: this.headers })
            .toPromise()
-           .then(response => response.json())
+           .then(response => {
+             alert(response);
+             return response.json();
+           })
            .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
+    alert('error');
+    alert(error.json().message || error);
     return Promise.reject(error.json().message || error);
   }
 }
