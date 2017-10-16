@@ -11,11 +11,11 @@ import * as echart from '../../echarts';
   styleUrls: ['./track.component.scss']
 })
 export class TrackComponent implements OnInit, AfterContentInit {
-  private saleachievementUrl = 'rest/performancetrack/sale_achievement';
+  private saleachievementUrl = 'performancetrack/sale_achievement';
   achievement = Object.assign({});
   saleProgressOption = {};
-  private performancetrackUrl = 'rest/performancetrack/app_track';
-  private overdueremindUrl = 'rest/performancetrack/over_remind';
+  private performancetrackUrl = 'performancetrack/app_track';
+  private overdueremindUrl = 'performancetrack/over_remind';
   pageLength = 5;
   performancetracks: Array<any>;
   displayPerformance = [];
@@ -25,7 +25,7 @@ export class TrackComponent implements OnInit, AfterContentInit {
   displayOverdue = [];
   overduermdPages = [];
   overduermdCurPage = 1;
-  private custBdUrl = 'rest/performancetrack/cust_bd_remind';
+  private custBdUrl = 'performancetrack/cust_bd_remind';
   custBdReminds = [];
 
   constructor(
@@ -90,6 +90,7 @@ export class TrackComponent implements OnInit, AfterContentInit {
             this.displayOverdue =
             this.overduereminds.slice(this.pageLength * (this.overduermdCurPage - 1), this.pageLength * this.overduermdCurPage);
           }
+          // console.log(JSON.parse(sessionStorage.user))
           this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 230);
         });
   }

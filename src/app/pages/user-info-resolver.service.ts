@@ -5,7 +5,7 @@ import { BackendService } from '../core/services/backend.service';
 
 @Injectable()
 export class UserInfoResolver implements Resolve<any> {
-  private userUrl = 'rest/personalinfo/my_info';
+  private userUrl = 'personalinfo/my_info';
   constructor(private bdService: BackendService) {}
 
   resolve(): Promise<any> {

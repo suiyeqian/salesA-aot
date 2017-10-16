@@ -9,16 +9,16 @@ import * as echart from '../../../echarts';
   styleUrls: ['./month-performance.component.scss']
 })
 export class MonthPerformanceComponent implements OnInit {
-  private weeklytrendUrl = 'rest/performancetrack/weekly_trend';
+  private weeklytrendUrl = 'performancetrack/weekly_trend';
   trendOption = Object.assign({});
-  private achieveforecastUrl = 'rest/performancetrack/achievement_forecast';
+  private achieveforecastUrl = 'performancetrack/achievement_forecast';
   achieveforecast = Object.assign({});
   // intervalNums = [0, 5, 15, 30, 45];
   // intervalPers = [1.0, 2.3, 3.1, 3.4, 4.0];
   private positionPoint = [0, 12, 27, 45, 66];
   myPctPosition: string;
   myRealPctPosition: string;
-  private checkwarningUrl = 'rest/performancetrack/check_warning';
+  private checkwarningUrl = 'performancetrack/check_warning';
   warningInfos = Object.assign({});
   bonusShow = false;
   awardShow = false;

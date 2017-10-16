@@ -11,7 +11,7 @@ import * as echart from '../../echarts';
   styleUrls: ['./review.component.scss']
 })
 export class ReviewComponent implements OnInit, AfterContentInit {
-  private bonustrendUrl = 'rest/performancereview/bonus_trend';
+  private bonustrendUrl = 'performancereview/bonus_trend';
   lineOption = {};
 
   constructor(

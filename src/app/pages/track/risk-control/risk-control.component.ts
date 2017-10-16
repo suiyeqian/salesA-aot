@@ -9,7 +9,7 @@ import * as echart from '../../../echarts';
   styleUrls: ['./risk-control.component.scss']
 })
 export class RiskControlComponent implements OnInit {
-  private riskcontrolUrl = 'rest/performancetrack/risk_management';
+  private riskcontrolUrl = 'performancetrack/risk_management';
   riskControl = Object.assign({});
   riskControlOption1: any;
   riskControlOption2: any;

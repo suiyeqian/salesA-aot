@@ -24,6 +24,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private router: Router) { }
 
   canActivate() {
+    sessionStorage.setItem('accessToken', 'PjKxOD9vMzf8lMwq7ukQPtOlz9rfaVrgLsXEnxIA8ty6xGjHlxijrRWi2fO5xxn8pwW2Y5RqQkycfZ2xEu4t');
+    sessionStorage.setItem('weiXinDeviceId', '82b66628f9a30ae54fe528f98094c138');
     let reg = new RegExp('(^|&)code=([^&]*)(&|$)');
     let r = window.location.search.substr(1).match(reg);
     if (r) {
@@ -54,19 +56,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       this.headers.append('X-Requested-Token', r[2]);
       this.headers.append('X-Requested-Authorization', signature);
       return this.getTicket().then(res => {
-        alert(res);
           if (res.success) {
             sessionStorage.setItem('accessToken', res.data.accessToken);
+            sessionStorage.setItem('weiXinDeviceId', res.data.weiXinDeviceId);
+            sessionStorage.setItem('refreshToken', res.data.refreshToken);
             sessionStorage.setItem('user', JSON.stringify(res.data));
-            alert(JSON.stringify(res.data));
-            // sessionStorage.setItem('refreshToken', res.data.refreshToken);
-            // sessionStorage.setItem('weiXinDeviceId', res.data.weiXinDeviceId);
             this.router.navigate(['/pages/track']);
             return true;
           } else {
-            if (res.code === 1004 || res.code === 1005) {
-                sessionStorage.clear();
-            }
+            sessionStorage.clear();
             return false;
           }
        });
@@ -118,8 +116,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   private handleError(error: any): Promise<any> {
-    alert('error');
-    alert(error.json().message || error);
+    console.log(error.json().message || error);
     return Promise.reject(error.json().message || error);
   }
 }

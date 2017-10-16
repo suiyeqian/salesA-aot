@@ -9,11 +9,11 @@ import { WaterMarkService } from '../../core/services/watermark.service';
   styleUrls: ['./rank.component.scss']
 })
 export class RankComponent implements OnInit, AfterContentInit {
-  private myrankUrl = 'rest/rankinginfo/my_rank';
+  private myrankUrl = 'rankinginfo/my_rank';
   myRank = Object.assign({});
   imgClass: string;
   imgUrl: string;
-  private toptenUrl = 'rest/rankinginfo/top_ten';
+  private toptenUrl = 'rankinginfo/top_ten';
   topTen = [];
 
   constructor(

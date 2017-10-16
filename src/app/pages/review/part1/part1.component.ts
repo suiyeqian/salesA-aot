@@ -9,11 +9,11 @@ import * as echart from '../../../echarts';
   styleUrls: ['./part1.component.scss']
 })
 export class LastMonthReviewComponent implements OnInit {
-  private pfmcanalysisUrl = 'rest/performancereview/perf_anls';
+  private pfmcanalysisUrl = 'performancereview/perf_anls';
   pfmcAnalysis = Object.assign({});
-  private pfmctrendUrl = 'rest/performancereview/perf_trend';
+  private pfmctrendUrl = 'performancereview/perf_trend';
   trendOption = {};
-  private pfmccompositionUrl = 'rest/performancereview/perf_form';
+  private pfmccompositionUrl = 'performancereview/perf_form';
   pfmcComposition = [];
   legendList = [];
   // legendColorList = ['#f3c143', '#ec7c30', '#b3b239', '#dd9261'];

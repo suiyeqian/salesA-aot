@@ -65,4 +65,17 @@
   </app>
   <!-- Scripts will be injected by webpack here -->
 </body>
+<style media="screen">
+  .eruda-entry-btn{
+    top:0!important;
+  }
+</style>
+<script src="https://cdn.bootcss.com/eruda/1.2.4/eruda.min.js"></script>
+<script>
+var el = document.createElement('div');
+document.body.appendChild(el);
+eruda.init({
+    container: el
+});
+</script>
 </html>

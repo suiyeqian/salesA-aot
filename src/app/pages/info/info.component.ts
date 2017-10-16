@@ -12,9 +12,9 @@ import * as echart from '../../echarts';
 })
 export class InfoComponent implements OnInit, AfterContentInit {
   myInfo = Object.assign({});
-  private mycompUrl = 'rest/personalinfo/my_comp';
+  private mycompUrl = 'personalinfo/my_comp';
   radarOption = {};
-  private growthtrackUrl = 'rest/personalinfo/growth_track';
+  private growthtrackUrl = 'personalinfo/growth_track';
   growthTrack = [];
 
   constructor(
