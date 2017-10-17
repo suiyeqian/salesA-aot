@@ -13,7 +13,7 @@ export class RiskControlComponent implements OnInit {
   riskControl = Object.assign({});
   riskControlOption1: any;
   riskControlOption2: any;
-  riskControlOption3: any;
+  cm2: number;
 
   constructor(
     private bdService: BackendService
@@ -47,6 +47,7 @@ export class RiskControlComponent implements OnInit {
             };
             this.riskControl = res.data;
             let resData = res.data;
+            this.cm2 = resData.cAmt > 0 ? resData.m2Amt / resData.cAmt * 100 : 0;
             this.riskControlOption1 = deepCopy(commonOption, {});
             this.riskControlOption1.series[0].axisLine.lineStyle.color[0][0] =
               +resData.loanAmt ? (resData.overDueAmt / resData.loanAmt) : 0;
@@ -57,9 +58,6 @@ export class RiskControlComponent implements OnInit {
               +resData.loanNumber ? (resData.overDueNumber / resData.loanNumber) : 0;
             this.riskControlOption2.series[0].data[0].value =
               +resData.loanNumber ? (resData.overDueNumber * 100 / resData.loanNumber).toFixed(2) : 0;
-            // this.riskControlOption3 = deepCopy(commonOption, {});
-            // this.riskControlOption3.series[0].axisLine.lineStyle.color[0][0] = +resData.cAmt ? (resData.m2Amt / resData.cAmt) : 0;
-            // this.riskControlOption3.series[0].data[0].value = +resData.cAmt ? (resData.m2Amt * 100 / resData.cAmt).toFixed(2) : 0;
           }
         });
   }

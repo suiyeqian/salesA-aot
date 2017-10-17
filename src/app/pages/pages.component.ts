@@ -22,9 +22,9 @@ export class PagesComponent implements OnInit {
   // getUser(): void {
   //   this.route.data
   //   .subscribe((data) => {
-  //     sessionStorage.clear();
+  //     localStorage.clear();
   //     // this.spinner.hide();
-  //     sessionStorage.setItem('user', JSON.stringify(data.userInfo));
+  //     localStorage.setItem('user', JSON.stringify(data.userInfo));
   //   });
   // }
 }

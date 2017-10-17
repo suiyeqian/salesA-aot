@@ -64,7 +64,7 @@ export class RankComponent implements OnInit, AfterContentInit {
           if ( res.code === 0) {
             this.topTen = res.data;
           };
-          this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 160);
+          this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number }, 160);
         });
   }
 }

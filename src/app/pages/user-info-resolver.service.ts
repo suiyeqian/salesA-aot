@@ -13,8 +13,8 @@ export class UserInfoResolver implements Resolve<any> {
     return this.bdService.getAll(this.userUrl).then(res => {
       if ( res.code === 0 && res.data) {
         return res.data;
-        // sessionStorage.clear();
-        // sessionStorage.setItem('user', JSON.stringify(res.data));
+        // localStorage.clear();
+        // localStorage.setItem('user', JSON.stringify(res.data));
       } else {
         alert('用户不存在！');
         return null;

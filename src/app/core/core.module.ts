@@ -10,6 +10,7 @@ import { BackendService } from './services/backend.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { SpinnerService } from './services/spinner.service';
 import { WaterMarkService } from './services/watermark.service';
+import { AuthorizeService } from './services/authorize.service';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { WaterMarkService } from './services/watermark.service';
     AuthGuard,
     BackendService,
     SpinnerService,
-    WaterMarkService
+    WaterMarkService,
+    AuthorizeService
   ]
 })
 export class CoreModule {

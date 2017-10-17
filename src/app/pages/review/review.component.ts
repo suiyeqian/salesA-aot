@@ -22,7 +22,7 @@ export class ReviewComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.getBonusTrend();
-    this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 100);
+    this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number }, 100);
   }
 
   ngAfterContentInit() {
@@ -46,7 +46,7 @@ export class ReviewComponent implements OnInit, AfterContentInit {
               [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt].reverse();
             this.lineOption = echart.LineChartOptions;
           }
-          this.waterMark.load({ wmk_txt: JSON.parse(sessionStorage.user).name + ' ' + JSON.parse(sessionStorage.user).number }, 100);
+          this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number }, 100);
         });
   }
 
