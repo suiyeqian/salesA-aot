@@ -24,8 +24,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     private router: Router) { }
 
   canActivate() {
-    sessionStorage.setItem('accessToken', 'PjKxOD9vMzf8lMwq7ukQPtOlz9rfaVrgLsXEnxIA8ty6xGjHlxijrRWi2fO5xxn8pwW2Y5RqQkycfZ2xEu4t');
-    sessionStorage.setItem('weiXinDeviceId', '82b66628f9a30ae54fe528f98094c138');
     let reg = new RegExp('(^|&)code=([^&]*)(&|$)');
     let r = window.location.search.substr(1).match(reg);
     if (r) {
@@ -57,10 +55,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       this.headers.append('X-Requested-Authorization', signature);
       return this.getTicket().then(res => {
           if (res.success) {
+            console.log(res.data);
             sessionStorage.setItem('accessToken', res.data.accessToken);
-            sessionStorage.setItem('weiXinDeviceId', res.data.weiXinDeviceId);
-            sessionStorage.setItem('refreshToken', res.data.refreshToken);
             sessionStorage.setItem('user', JSON.stringify(res.data));
+            sessionStorage.setItem('refreshToken', res.data.refreshToken);
+            sessionStorage.setItem('weiXinDeviceId', res.data.weiXinDeviceId);
             this.router.navigate(['/pages/track']);
             return true;
           } else {
@@ -72,7 +71,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       if (sessionStorage.getItem('accessToken')) {
         return true;
       } else {
-        // console.log(this.redirectUrl);
+        // sessionStorage.setItem('accessToken', 'Y5IWVYSM7aH2W38ywRaatfLi10Lw7FRZOdNFFHLhz2Q5kIFGYudol3ujTdXBX3BRrLqZFa9jA1TEEDlMGSSc');
+        // sessionStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
         // return true;
         sessionStorage.clear();
         window.location.href = this.redirectUrl;
@@ -109,7 +109,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.http.post(this.requestUrl, 'appId=69', { headers: this.headers })
            .toPromise()
            .then(response => {
-             alert(response);
              return response.json();
            })
            .catch(this.handleError);

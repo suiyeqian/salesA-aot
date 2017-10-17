@@ -48,14 +48,14 @@ export class RiskControlComponent implements OnInit {
             this.riskControl = res.data;
             let resData = res.data;
             this.riskControlOption1 = deepCopy(commonOption, {});
-            this.riskControlOption1.series[0].axisLine.lineStyle.color[0][0] = resData.overDueAmt / resData.loanAmt;
-            this.riskControlOption1.series[0].data[0].value = (resData.overDueAmt * 100 / resData.loanAmt).toFixed(2);
+            this.riskControlOption1.series[0].axisLine.lineStyle.color[0][0] = +resData.loanAmt ? (resData.overDueAmt / resData.loanAmt) : 0;
+            this.riskControlOption1.series[0].data[0].value = +resData.loanAmt ? (resData.overDueAmt * 100 / resData.loanAmt).toFixed(2) : 0;
             this.riskControlOption2 = deepCopy(commonOption, {});
-            this.riskControlOption2.series[0].axisLine.lineStyle.color[0][0] = resData.overDueNumber / resData.loanNumber;
-            this.riskControlOption2.series[0].data[0].value = (resData.overDueNumber * 100 / resData.loanNumber).toFixed(2);
-            this.riskControlOption3 = deepCopy(commonOption, {});
-            this.riskControlOption3.series[0].axisLine.lineStyle.color[0][0] = resData.m2Amt / resData.cAmt;
-            this.riskControlOption3.series[0].data[0].value = (resData.m2Amt * 100 / resData.cAmt).toFixed(2);
+            this.riskControlOption2.series[0].axisLine.lineStyle.color[0][0] = +resData.loanNumber ? (resData.overDueNumber / resData.loanNumber) : 0;
+            this.riskControlOption2.series[0].data[0].value = +resData.loanNumber ? (resData.overDueNumber * 100 / resData.loanNumber).toFixed(2) : 0;
+            // this.riskControlOption3 = deepCopy(commonOption, {});
+            // this.riskControlOption3.series[0].axisLine.lineStyle.color[0][0] = +resData.cAmt ? (resData.m2Amt / resData.cAmt) : 0;
+            // this.riskControlOption3.series[0].data[0].value = +resData.cAmt ? (resData.m2Amt * 100 / resData.cAmt).toFixed(2) : 0;
           }
         });
   }

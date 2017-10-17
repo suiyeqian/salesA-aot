@@ -5,8 +5,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackendService {
-  private baseUrl = 'http://10.17.2.177:8989/servegateway/rest/bdsa/';
-  // private baseUrl = '/servegateway/rest/bdsa/';
+  // private baseUrl = 'http://10.17.2.110:8989/servegateway/rest/bdsa/';
+  private baseUrl = '/servegateway/rest/bdsa/';
   jsonHeaders = new Headers({
     'X-Requested-Token': sessionStorage.getItem('accessToken'),
     'X-Requested-SystemCode' : 'neo_bdsa',
@@ -21,6 +21,7 @@ export class BackendService {
   }
 
   getAll(url: string ): Promise<any> {
+    // console.log(Math.floor(new Date().getTime() / 1000).toString(), this.MathRand());
     this.jsonHeaders.set('X-Requested-Timestamp', Math.floor(new Date().getTime() / 1000).toString());
     this.jsonHeaders.set('X-Requested-Nonce', this.MathRand());
     return this.http.get(this.baseUrl + url, this.jsonOption)

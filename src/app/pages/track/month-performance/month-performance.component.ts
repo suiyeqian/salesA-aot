@@ -62,47 +62,46 @@ export class MonthPerformanceComponent implements OnInit {
             // 计算提成系数和位置及预计奖金
             let expectAmt = resData.expectAmt / 10000;
             for (let i = resData.sections.length - 1; i >= 0; i--) {
-              if (expectAmt === resData.sections[i]) {
+              if (+expectAmt === +resData.sections[i]) {
                 this.myPctPosition = this.positionPoint[i] + '%';
                 resData.coefficient = resData.coefficients[i];
                 resData.royaltyAmt = resData.expectAmt * resData.coefficient / 100;
                 break;
               }
-              if (expectAmt > resData.sections[i]) {
+              if (+expectAmt > +resData.sections[i]) {
                 resData.coefficient = resData.coefficients[i];
                 resData.royaltyAmt = resData.expectAmt * resData.coefficient / 100;
                 if (i === resData.sections.length - 1) {
                   this.myPctPosition = '76%';
                   break;
                 }
-                let interval_n = resData.sections[i + 1] - resData.sections[i];
-                let interval_p = this.positionPoint[i + 1] - this.positionPoint[i];
-                this.myPctPosition = this.positionPoint[i] + (expectAmt - resData.sections[i]) * interval_p / interval_n + '%';
+                let interval_n = +resData.sections[i + 1] - resData.sections[i];
+                let interval_p = +this.positionPoint[i + 1] - this.positionPoint[i];
+                this.myPctPosition = +this.positionPoint[i] + (expectAmt - resData.sections[i]) * interval_p / interval_n + '%';
                 break;
               }
             }
             // 计算已完成的提成系数的位置及已完成奖金
             let cmpeAmt = resData.cmpeAmt / 10000;
             for (let i = resData.sections.length - 1; i >= 0; i--) {
-              if (cmpeAmt === resData.sections[i]) {
+              if (+cmpeAmt === +resData.sections[i]) {
                 this.myRealPctPosition = this.positionPoint[i] + '%';
                 resData.cmpeBonus = resData.cmpeAmt * resData.coefficients[i] / 100;
                 break;
               }
-              if (cmpeAmt > resData.sections[i]) {
+              if (+cmpeAmt > +resData.sections[i]) {
                 resData.cmpeBonus = resData.cmpeAmt * resData.coefficients[i] / 100;
                 if (i === resData.sections.length - 1) {
                   this.myRealPctPosition = '71%';
                   break;
                 }
-                let interval_n = resData.sections[i + 1] - resData.sections[i];
-                let interval_p = this.positionPoint[i + 1] - this.positionPoint[i];
-                this.myRealPctPosition = this.positionPoint[i] + (cmpeAmt - resData.sections[i]) * interval_p / interval_n + '%';
+                let interval_n = +resData.sections[i + 1] - resData.sections[i];
+                let interval_p = +this.positionPoint[i + 1] - this.positionPoint[i];
+                this.myRealPctPosition = +this.positionPoint[i] + (cmpeAmt - resData.sections[i]) * interval_p / interval_n + '%';
                 break;
               }
             }
             this.achieveforecast = resData;
-            // console.log(res.data,this.myRealPctPosition,this.myPctPosition);
           }
         });
   }

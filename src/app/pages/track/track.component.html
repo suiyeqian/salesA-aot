@@ -49,34 +49,34 @@
       <div echarts [options]="saleProgressOption"  class="sale-progress-chart"></div>
     </div>
     <div class="text-center">
-      <p class="font-yellow amount-value">{{achievement.monAmt | number}}</p>
+      <p class="font-yellow amount-value">{{+achievement.monAmt | number}}</p>
       <span>合同金额</span>
     </div>
   </div>
   <div class="col-6 right-list">
     <div class="index-item row">
       <span class="col-7 text-left">本月目标</span>
-      <span class="col-5 text-right index-value target-val">{{ achievement.monGoalAmt | number}}</span>
+      <span class="col-5 text-right index-value target-val">{{ +achievement.monGoalAmt | number}}</span>
     </div>
     <div class="index-item row">
       <span class="col-7 text-left">申请单量</span>
-      <span class="col-5 text-right index-value">{{ achievement.monAppNum | number}}</span>
+      <span class="col-5 text-right index-value">{{ +achievement.monAppNum | number}}</span>
     </div>
     <div class="index-item row">
       <span class="col-7 text-left">通过单量</span>
-      <span class="col-5 text-right index-value">{{ achievement.monPassNum | number}}</span>
+      <span class="col-5 text-right index-value">{{ +achievement.monPassNum | number}}</span>
     </div>
     <div class="index-item row">
       <span class="col-7 text-left">拒绝单量</span>
-      <span class="col-5 text-right index-value">{{ achievement.monRefuseNum | number}}</span>
+      <span class="col-5 text-right index-value">{{ +achievement.monRefuseNum | number}}</span>
     </div>
     <div class="index-item row">
       <span class="col-7 text-left">放款单量</span>
-      <span class="col-5 text-right index-value">{{ achievement.monLoanNum | number}}</span>
+      <span class="col-5 text-right index-value">{{ +achievement.monLoanNum | number}}</span>
     </div>
     <div class="index-item row">
       <span class="col-7 text-left">通过率</span>
-      <span class="col-5 text-right index-value">{{ achievement.monPassRate }}%</span>
+      <span class="col-5 text-right index-value">{{ +achievement.monPassRate }}%</span>
     </div>
   </div>
 </div>
@@ -105,7 +105,7 @@
         <td class="contract-no">{{item.cntNum}}</td>
         <td class="borrower">{{item.borrower}}</td>
         <td>{{item.product}}</td>
-        <td>{{item.amt | number}}</td>
+        <td>{{+item.amt | number}}</td>
         <td>{{item.status}}</td>
       </tr>
     </tbody>
@@ -136,8 +136,8 @@
         <!-- <td class="date">{{item.dateStr | date:'yy/MM/dd'}}</td> -->
         <td class="contract-no">{{item.cntNum}}</td>
         <td class="borrower">{{item.borrower}}</td>
-        <td class="amount">{{item.amt | number}}</td>
-        <td class="amount">{{item.repayAmt | number}}</td>
+        <td class="amount">{{+item.amt | number}}</td>
+        <td class="amount">{{+item.repayAmt | number}}</td>
         <td *ngIf="item.status == 0">{{item.days}}日内还款</td>
         <td *ngIf="item.status == 1" class="overdue">已逾期{{item.days}}天</td>
       </tr>
