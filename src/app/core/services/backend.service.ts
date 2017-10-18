@@ -9,20 +9,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class BackendService {
   private apiUrl = 'http://10.17.2.177:8886';
-  private baseUrl = this.apiUrl + '/servegateway/rest/bdsa/';
   // private apiUrl = window.location.origin;
-  // private baseUrl = '/servegateway/rest/bdsa/';
+  private baseUrl = this.apiUrl + '/servegateway/rest/bdsa/';
   private refreshUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/user/access_token';
   firstOverdue = true;
-
-  jsonHeaders = new Headers({
+  headersObj = {
     'X-Requested-Token': localStorage.getItem('accessToken'),
     'X-Requested-SystemCode' : 'neo_bdsa',
     'X-Requested-DeviceId':  localStorage.getItem('weiXinDeviceId'),
     'X-Requested-APICode': 'access_token_weixin_device',
     'X-Requested-Version': '1.0'
-  });
-  jsonOption = new RequestOptions({ headers: this.jsonHeaders});
+  };
 
   constructor(
     private http: Http,
@@ -34,9 +31,14 @@ export class BackendService {
 
   getAll(url: string ): Promise<any> {
     // console.log(Math.floor(new Date().getTime() / 1000).toString(), this.MathRand());
-    this.jsonHeaders.set('X-Requested-Timestamp', Math.floor(new Date().getTime() / 1000).toString());
-    this.jsonHeaders.set('X-Requested-Nonce', this.MathRand());
-    return this.http.get(this.baseUrl + url, this.jsonOption)
+    this.headersObj['X-Requested-Timestamp'] = Math.floor(new Date().getTime() / 1000).toString();
+    this.headersObj['X-Requested-Nonce'] = this.MathRand();
+    let jsonHeaders = new Headers(this.headersObj);
+    let form = this.oauth.normalizeParameters(this.headersObj);
+    let result = 'GET' + '&' + this.oauth.percentEncode(this.baseUrl + url) + '&' + form;
+    let signature = CryptoJS.HmacSHA1(result, result).toString(CryptoJS.enc.Base64);
+    jsonHeaders.append('X-Requested-Authorization', signature);
+    return this.http.get(this.baseUrl + url, {headers: jsonHeaders})
                .toPromise()
                .then(response => {
                   if (!localStorage.getItem('weiXinDeviceId')) {

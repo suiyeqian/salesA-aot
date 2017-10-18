@@ -7,9 +7,8 @@ import { AuthorizeService } from './authorize.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   private apiUrl = 'http://10.17.2.177:8886';
-  private requestUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/staff/sso';
   // private apiUrl = window.location.origin;
-  // private requestUrl = '/servegateway/rest/bduser/weixin/staff/sso';
+  private requestUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/staff/sso';
   private redirectUri = encodeURIComponent(this.apiUrl + '/bdsa/').toLowerCase();
   private appId = 1;
   private redirectUrl = this.apiUrl + '/servegateway/wxgateway/oauth2/authorize?appId=' + this.appId + '&redirectUri=' + this.redirectUri;
@@ -58,7 +57,7 @@ export class AuthGuard implements CanActivate {
       if (localStorage.getItem('accessToken')) {
         return true;
       } else {
-        let user = {name: '马倩', number: 'xn087432'};
+        let user = {name: '马倩', number: 'xn087432', position: '电销客户经理'};
         localStorage.setItem('accessToken', 'NALTWKVsnRYODBSYeTVi3mXzWxXvZOTrKi4IIwX5uxYpU4449cGLpqmG3LcqZ7GNdytvmPjpKQ3bgGPHYzO6');
         localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
         localStorage.setItem('refreshToken', '4r4KKPGFmDdHBubKSR3u6CGYflQ6zRjGkndR7kXpjHCDbI7qFiaPoe1S871Wl6udOtbyJCG56hJN9AvW30dt');

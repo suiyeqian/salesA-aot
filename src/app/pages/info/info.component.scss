@@ -4,11 +4,11 @@
 .person-info {
   margin-top: .59rem;
   margin-bottom: .59rem;
-  padding: 0 .6rem 0 .8rem;
+  padding: 0 .6rem;
 }
 .person-info .col-7, .person-info .col-5, .person-info .col-12{
   padding-left: .2rem;
-  padding-right: .2rem;
+  padding-right: .1rem;
 }
 .avatar {
   border-radius: 2px;
@@ -23,7 +23,7 @@
   border-bottom: 1px dashed #828187;
 }
 .item-name{
-  width: 50%;
+  width: 41%;
   line-height: .4rem;
   font-size: .38rem;
   position: absolute;
@@ -36,10 +36,10 @@
   display: inline-block;
   border: .11rem solid #fdbf04;
   border-radius: 50%;
-  margin-right: .3rem;
+  margin-right: .18rem;
 }
 .item-value {
-  width: 50%;
+  width: 59%;
   font-size: .4rem;
   font-weight: normal;
   line-height: .42rem;
