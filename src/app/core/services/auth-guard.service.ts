@@ -11,7 +11,8 @@ export class AuthGuard implements CanActivate {
   // private apiUrl = window.location.origin;
   // private requestUrl = '/servegateway/rest/bduser/weixin/staff/sso';
   private redirectUri = encodeURIComponent(this.apiUrl + '/bdsa/').toLowerCase();
-  private redirectUrl = this.apiUrl + '/servegateway/wxgateway/oauth2/authorize?appId=69&redirectUri=' + this.redirectUri;
+  private appId = 1;
+  private redirectUrl = this.apiUrl + '/servegateway/wxgateway/oauth2/authorize?appId=' + this.appId + '&redirectUri=' + this.redirectUri;
   headerObj = {
     'X-Requested-SystemCode' : 'neo_bdsa',
     'X-Requested-APICode': 'staff_weixin_sso',
@@ -33,38 +34,15 @@ export class AuthGuard implements CanActivate {
     let reg = new RegExp('(^|&)code=([^&]*)(&|$)');
     let r = window.location.search.substr(1).match(reg);
     if (r) {
-      // let sortable = [];
-      // for (let p of Object.keys(this.headerObj)) {
-      //   let nvp = this.headerObj[p];
-      //   sortable.push([ p + ' ' + nvp, [p, nvp]]);
-      // }
-      // sortable.push(['X-Requested-Token' + ' ' + r[2], ['X-Requested-Token', r[2]]]);
-      // sortable.push(['appId' + ' ' + '69', ['appId', '69']]);
-      // sortable.sort(function(a, b) {
-      //     if (a[0] < b[0]) { return -1; }
-      //     if (a[0] > b[0]) { return 1; }
-      //     return 0;
-      // });
-      // let sorted = [];
-      // for (let s of sortable) { sorted.push(s[1]); }
-      // let form = '';
-      // for (let p of sorted){
-      //   let value = p[1];
-      //   if (value == null) { value = ''; }
-      //   if (form !== '') { form += '&'; }
-      //   form += this.oauth.percentEncode(p[0]) + '=' + this.oauth.percentEncode(value);
-      // }
-      let obj = Object.assign({}, this.headerObj, {'X-Requested-Token': r[2], 'appId': '69'});
+      let obj = Object.assign({}, this.headerObj, {'X-Requested-Token': r[2], 'appId': this.appId});
       let form = this.oauth.normalizeParameters(obj);
       let result = 'POST' + '&' + this.oauth.percentEncode(this.requestUrl) + '&' + form;
-      // let result = 'POST' + '&' + this.oauth.percentEncode(this.requestUrl) + '&' + encodeURIComponent(form);
       let signature = CryptoJS.HmacSHA1(result, result).toString(CryptoJS.enc.Base64);
       this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
       this.headers.append('X-Requested-Token', r[2]);
       this.headers.append('X-Requested-Authorization', signature);
       return this.getTicket().then(res => {
           if (res.success) {
-            console.log(res.data);
             localStorage.setItem('accessToken', res.data.accessToken);
             localStorage.setItem('user', JSON.stringify(res.data));
             localStorage.setItem('refreshToken', res.data.refreshToken);
@@ -81,9 +59,9 @@ export class AuthGuard implements CanActivate {
         return true;
       } else {
         let user = {name: '马倩', number: 'xn087432'};
-        localStorage.setItem('accessToken', 'Y5IWVYSM7aH2W38ywRaatfLi10Lw7FRZOdNFFHLhz2Q5kIFGYudol3ujTdXBX3BRrLqZFa9jA1TEEDlMGSSc');
+        localStorage.setItem('accessToken', 'NALTWKVsnRYODBSYeTVi3mXzWxXvZOTrKi4IIwX5uxYpU4449cGLpqmG3LcqZ7GNdytvmPjpKQ3bgGPHYzO6');
         localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
-        localStorage.setItem('refreshToken', 'RrDRK6XijUGfzbYwUP57rHteHJyCajztpJXpkmQZF6fWBr2FHrgVi4zfxrUmx6J8hYIIlvd5bnBURBpSzs9e');
+        localStorage.setItem('refreshToken', '4r4KKPGFmDdHBubKSR3u6CGYflQ6zRjGkndR7kXpjHCDbI7qFiaPoe1S871Wl6udOtbyJCG56hJN9AvW30dt');
         localStorage.setItem('user', JSON.stringify(user));
         return true;
         // localStorage.clear();
@@ -91,34 +69,13 @@ export class AuthGuard implements CanActivate {
       }
     }
   }
-  //
-  // percentEncode(s) {
-  //     if (s == null) {
-  //         return '';
-  //     }
-  //     if (s instanceof Array) {
-  //         let e = '';
-  //         for (let i of s) {
-  //           if (e !== '') { e += '&'; }
-  //           e += this.percentEncode(i);
-  //         }
-  //         return e;
-  //     }
-  //     s = encodeURIComponent(s);
-  //     s = s.replace(/\!/g, '%21');
-  //     s = s.replace(/\*/g, '%2A');
-  //     s = s.replace(/\'/g, '%27');
-  //     s = s.replace(/\(/g, '%28');
-  //     s = s.replace(/\)/g, '%29');
-  //     return s;
-  // }
 
   // canActivateChild() {
   //   return this.canActivate();
   // }
 
   getTicket(): Promise<any> {
-    return this.http.post(this.requestUrl, 'appId=69', { headers: this.headers })
+    return this.http.post(this.requestUrl, 'appId=' + this.appId, { headers: this.headers })
            .toPromise()
            .then(response => {
              return response.json();
