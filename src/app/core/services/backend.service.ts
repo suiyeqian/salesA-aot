@@ -8,8 +8,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackendService {
-  private apiUrl = 'http://10.17.2.177:8886';
-  // private apiUrl = window.location.origin;
+  // private apiUrl = 'http://10.17.2.177:8886';
+  private apiUrl = window.location.origin;
   private baseUrl = this.apiUrl + '/servegateway/rest/bdsa/';
   private refreshUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/user/access_token';
   firstOverdue = true;
@@ -41,12 +41,15 @@ export class BackendService {
     return this.http.get(this.baseUrl + url, {headers: jsonHeaders})
                .toPromise()
                .then(response => {
-                  if (!localStorage.getItem('weiXinDeviceId')) {
+                  if (!localStorage.getItem('weiXinDeviceId') || response.json().code === 60000) {
                     localStorage.clear();
                     window.location.reload();
                   }
                   if (response.json().code === 50013) {
                     this.getNewToken();
+                  }
+                  if (!response.json().data) {
+                   return [];
                   }
                   return response.json();
                })
@@ -86,7 +89,7 @@ export class BackendService {
       this.http.post(this.refreshUrl, body, { headers: headers })
              .toPromise()
              .then(response => {
-               if (response.json().code === 50012) {
+               if (response.json().code === 50012 || response.json().code === 60000 ) {
                  localStorage.clear();
                } else {
                  localStorage.setItem('accessToken', response.json().data.accessToken);
