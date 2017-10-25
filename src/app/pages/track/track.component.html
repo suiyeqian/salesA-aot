@@ -138,7 +138,8 @@
         <td class="borrower">{{item.borrower}}</td>
         <td class="amount">{{+item.amt | number}}</td>
         <td class="amount">{{+item.repayAmt | number}}</td>
-        <td *ngIf="item.status == 0">{{item.days}}日内还款</td>
+        <td *ngIf="item.status == 0 && item.days == 0">今日还款</td>
+        <td *ngIf="item.status == 0 && item.days > 0">{{item.days}}日内还款</td>
         <td *ngIf="item.status == 1" class="overdue">已逾期{{item.days}}天</td>
       </tr>
     </tbody>
