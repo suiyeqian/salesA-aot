@@ -38,12 +38,13 @@ export class ReviewComponent implements OnInit, AfterContentInit {
           if ( res.code === 0) {
             let resData = res.data;
             let xAxisData = [];
-            for (let item of resData.months) {
-              xAxisData.push(item + '月');
+            let seriesData = [];
+            for (let item of resData) {
+              xAxisData.push(item.month + '月');
+              seriesData.push(+item.amt);
             }
             echart.LineChartOptions.xAxis.data = xAxisData;
-            echart.LineChartOptions.series[0].data =
-              [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt].reverse();
+            echart.LineChartOptions.series[0].data = seriesData;
             this.lineOption = echart.LineChartOptions;
           }
           this.waterMark.load({ wmk_txt: JSON.parse(localStorage.user).name + ' ' + JSON.parse(localStorage.user).number }, 100);
