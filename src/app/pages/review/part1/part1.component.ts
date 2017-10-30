@@ -88,15 +88,15 @@ export class LastMonthReviewComponent implements OnInit {
               return child;
             };
             this.pfmcComposition = res.data;
-            let loanOrderChartData = [];
+            let applyOrderChartData = [];
             let cntAmtChartData = [];
             for (let item of res.data) {
               this.legendList.push(item.prodName);
-              loanOrderChartData.push({value: item.loanNum, name: item.prodName});
+              applyOrderChartData.push({value: item.appNum, name: item.prodName});
               cntAmtChartData.push({value: item.cntAmt, name: item.prodName});
             }
             this.loanOrderOption = deepCopy(commonOption, {});
-            this.loanOrderOption.series[0].data = loanOrderChartData;
+            this.loanOrderOption.series[0].data = applyOrderChartData;
             this.contractValueOption = deepCopy(commonOption, {});
             this.contractValueOption.series[0].data = cntAmtChartData;
           }
