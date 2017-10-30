@@ -5,6 +5,16 @@
   border-bottom: 1px solid #34353c;
   margin-bottom: .48rem;
 }
+.time-progress .col.text-left {
+  padding-right: 0;
+}
+.time-progress .col.text-right {
+  padding-left: 0;
+}
+.time-progress .col.text-center {
+  padding-left: 0;
+  padding-right: 0;
+}
 // 当日销售业绩
 .day-performance {
   margin-top: .21rem;

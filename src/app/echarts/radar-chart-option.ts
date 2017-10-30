@@ -1,5 +1,8 @@
 export const RadarChartOptions = {
-  tooltip: { show: false},
+  tooltip: {
+    show: true,
+    formatter: '{c0}'
+  },
   radar: [
     {
       indicator: [],
@@ -29,7 +32,7 @@ export const RadarChartOptions = {
       },
       areaStyle: {
         normal: {
-          opacity: 1,
+          opacity: 0.7,
           color: {
             type: 'linear',
             x: 0, y: 0,
