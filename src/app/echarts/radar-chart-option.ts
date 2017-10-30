@@ -1,7 +1,16 @@
 export const RadarChartOptions = {
   tooltip: {
     show: true,
-    formatter: '{c0}'
+    formatter: function (value) {
+
+    }
+//     formatter: function (value, index) {
+//       console.log(value,index)
+//     // 格式化成月/日，只在第一个刻度显示年份
+//     var date = new Date(value);
+//     var texts = [(date.getMonth() + 1), date.getDate()];
+//     return texts.join('/');
+// }
   },
   radar: [
     {

@@ -132,11 +132,12 @@
 </div>
 
 <my-ribbon ribbonNum="5" contentTxt="客户生日提醒"></my-ribbon>
-<div class="has-grey-bgc birthday-reminder">
-  <div class="reminder-list">
+<div class="has-grey-bgc birthday-reminder" >
+  <div class="reminder-list" *ngIf="custBdReminds.length > 0">
     <div class="reminder-item row" *ngFor="let item of custBdReminds">
       <span class="text-left reminder-date col-3">{{item.dateStr}}</span>
       <div class="col-9 custlist"><span  *ngFor="let cus of item.custList;let i = index;">{{cus.name}}<span *ngIf="i != item.custList.length-1">、</span></span></div>
     </div>
   </div>
+  <h3 class="text-center no-record" *ngIf="custBdReminds.length === 0" >本月暂无生日提醒</h3>
 </div>

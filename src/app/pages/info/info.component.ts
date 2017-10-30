@@ -73,6 +73,13 @@ export class InfoComponent implements OnInit, AfterContentInit {
             }
             echart.RadarChartOptions.radar[0].indicator = indicator;
             echart.RadarChartOptions.series[0].data[0].value = dataVals;
+            echart.RadarChartOptions.tooltip.formatter = function(value) {
+              let text = '';
+              for (let item of resData) {
+                text += item.name + ': ' + item.origValue + '<br/>';
+              }
+              return text;
+            };
             this.radarOption = echart.RadarChartOptions;
           }
         });

@@ -7,8 +7,8 @@ import { AuthorizeService } from './authorize.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
   // private apiUrl = 'http://10.17.2.177:8886';
-  private apiUrl = 'https://xszs-test.niudingfeng.com';
-  // private apiUrl = window.location.origin;
+  // private apiUrl = 'https://xszs-test.niudingfeng.com';
+  private apiUrl = window.location.origin;
   private requestUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/staff/sso';
   private redirectUri = encodeURIComponent(this.apiUrl + '/bdsa/').toLowerCase();
   private appId = 1;
@@ -54,18 +54,17 @@ export class AuthGuard implements CanActivate {
           }
        });
     } else {
-      localStorage.clear();
       if (localStorage.getItem('accessToken')) {
         return true;
       } else {
-        let user = {name: '马倩', number: 'xn087432'};
-        localStorage.setItem('accessToken', '7FXTSNFVVJ9W4tZbOjVPwMetL427JwTQRVRFOzwgg1Y7KxZwhDwAoPiWs0GLiLdNtagZuPXXBuxMjbRkFDeQ');
-        localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
-        localStorage.setItem('refreshToken', 'MfZgctiBVI3lRiEQVc7BTqPzIb5uCjTYb0SdihxJ8BFXI28izxdNSMn89062i16GGHv2LHyt6DtbfORWP5fC');
-        localStorage.setItem('user', JSON.stringify(user));
-        return true;
-        // localStorage.clear();
-        // window.location.href = this.redirectUrl;
+        // let user = {name: '马倩', number: 'xn087432'};
+        // localStorage.setItem('accessToken', '7FXTSNFVVJ9W4tZbOjVPwMetL427JwTQRVRFOzwgg1Y7KxZwhDwAoPiWs0GLiLdNtagZuPXXBuxMjbRkFDeQ');
+        // localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
+        // localStorage.setItem('refreshToken', 'MfZgctiBVI3lRiEQVc7BTqPzIb5uCjTYb0SdihxJ8BFXI28izxdNSMn89062i16GGHv2LHyt6DtbfORWP5fC');
+        // localStorage.setItem('user', JSON.stringify(user));
+        // return true;
+        localStorage.clear();
+        window.location.href = this.redirectUrl;
       }
     }
   }
