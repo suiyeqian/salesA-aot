@@ -115,7 +115,7 @@
     <div class="obsolete" *ngIf="+warningInfos.m1Number + warningInfos.number === 0">
       <h5>淘汰进度条</h5>
       <p class="time-line row text-center">
-        <ng-container *ngFor="let i of warningInfos.months;let idx = index"><span class="col-6" *ngIf="idx < 2">{{i}}月</span></ng-container>
+        <ng-container *ngFor="let i of warningInfos.months;let idx = index"><span class="col-6" *ngIf="idx > 0">{{i}}月</span></ng-container>
       </p>
       <div class="progress-group">
         <ngb-progressbar type="customized" [value]="100" [striped]="true" [animated]="true" class="obsolete-progress-bar">
