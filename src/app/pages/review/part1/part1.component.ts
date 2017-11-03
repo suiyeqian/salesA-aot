@@ -54,13 +54,13 @@ export class LastMonthReviewComponent implements OnInit {
             }
             echart.LineBarChartOptions.xAxis[0].data = xAxisData;
             echart.LineBarChartOptions.series[0].data =
-              [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt].reverse();
-            echart.LineBarChartOptions.series[1].data =
               [resData.m1AppNumber, resData.m2AppNumber, resData.m3AppNumber, resData.m4AppNumber, resData.m5AppNumber,
               resData.m6AppNumber].reverse();
-            echart.LineBarChartOptions.series[2].data =
+            echart.LineBarChartOptions.series[1].data =
               [resData.m1Number, resData.m2Number, resData.m3Number, resData.m4Number, resData.m5Number, resData.m6Number].reverse();
             this.trendOption = echart.LineBarChartOptions;
+            echart.LineBarChartOptions.series[2].data =
+              [resData.m1Amt, resData.m2Amt, resData.m3Amt, resData.m4Amt, resData.m5Amt, resData.m6Amt].reverse();
           }
         });
   }

@@ -5,7 +5,7 @@ export const LineBarChartOptions = {
   },
   calculable : true,
   legend: {
-    data: ['合同金额', '申请单量', '放款单量'],
+    data: ['申请单量', '放款单量', '合同金额'],
     right: 0,
     textStyle: { color: '#ccc' }
   },
@@ -22,6 +22,18 @@ export const LineBarChartOptions = {
   yAxis: [
     {
       type : 'value',
+      name: '单位(件)',
+      nameTextStyle: { color: '#ccc' },
+      splitNumber: 3,
+      axisTick: { show: false },
+      axisLabel: {
+        textStyle: { color: '#ccc' }
+      },
+      axisLine: { show: false },
+      splitLine: { show: false },
+    },
+    {
+      type : 'value',
       name: '单位(万元)',
       nameTextStyle: { color: '#ccc' },
       splitNumber: 3,
@@ -32,44 +44,13 @@ export const LineBarChartOptions = {
       },
       axisLine: { show: false },
       splitLine: { show: false },
-    },
-    {
-      type : 'value',
-      splitNumber: 3,
-      axisTick: { show: false },
-      axisLabel: {
-        textStyle: { color: '#ccc' }
-      },
-      axisLine: { show: false },
-      splitLine: { show: false },
     }
+
   ],
   series: [
     {
-      name: '合同金额',
-      type: 'line',
-      symbol: 'circle',
-      data: [],
-      itemStyle: {
-        normal: {
-          color: '#51c3cd',
-        },
-        opacity: 0
-      },
-      lineStyle: {
-        normal: {
-          color: '#51c3cd',
-          shadowColor: 'rgba(3, 3, 3, 0.26)',
-          shadowBlur: 10,
-          shadowOffsetY: 2,
-          shadowOffsetX: 2
-        }
-      }
-    },
-    {
       name: '申请单量',
       type: 'bar',
-      yAxisIndex: 1,
       data: [],
       barWidth: '40%',
       itemStyle: {
@@ -89,7 +70,7 @@ export const LineBarChartOptions = {
     {
       name: '放款单量',
       type: 'bar',
-      yAxisIndex: 1,
+      yAxisIndex: 0,
       data: [],
       barGap: 0,
       barWidth: '40%',
@@ -104,6 +85,28 @@ export const LineBarChartOptions = {
               {offset: 1, color: '#9a2819'}
             ],
           }
+        }
+      }
+    },
+    {
+      name: '合同金额',
+      type: 'line',
+      yAxisIndex: 1,
+      symbol: 'circle',
+      data: [],
+      itemStyle: {
+        normal: {
+          color: '#51c3cd',
+        },
+        opacity: 0
+      },
+      lineStyle: {
+        normal: {
+          color: '#51c3cd',
+          shadowColor: 'rgba(3, 3, 3, 0.26)',
+          shadowBlur: 10,
+          shadowOffsetY: 2,
+          shadowOffsetX: 2
         }
       }
     }
