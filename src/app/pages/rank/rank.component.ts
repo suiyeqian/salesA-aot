@@ -43,14 +43,14 @@ export class RankComponent implements OnInit, AfterContentInit {
             this.myRank = resData;
             if (resData.rank < 4) {
               this.imgClass = 'rank-top';
-              this.imgUrl = '/assets/img/rank' + resData.rank + '.png';
+              this.imgUrl = 'assets/img/rank' + resData.rank + '.png';
             } else {
               if (resData.percent >= 90) {
                 this.imgClass = 'rank-per-10';
-                this.imgUrl = '/assets/img/rank-per-10.png';
+                this.imgUrl = 'assets/img/rank-per-10.png';
               } else {
                 this.imgClass = 'rank-other';
-                this.imgUrl = '/assets/img/rank-other.png';
+                this.imgUrl = 'assets/img/rank-other.png';
               }
             }
           };

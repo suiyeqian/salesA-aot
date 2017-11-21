@@ -8,7 +8,6 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackendService {
-  // private apiUrl = 'http://10.17.2.177:8886';
   // private apiUrl = 'https://xszs-test.niudingfeng.com';
   private apiUrl = window.location.origin;
   private baseUrl = this.apiUrl + '/servegateway/rest/bdsa/';
@@ -40,10 +39,10 @@ export class BackendService {
     return this.http.get(this.baseUrl + url, {headers: jsonHeaders})
                .toPromise()
                .then(response => {
-                  if (!localStorage.getItem('weiXinDeviceId') || response.json().code === 60000) {
-                    localStorage.clear();
-                    window.location.reload();
-                  }
+                  // if (!localStorage.getItem('weiXinDeviceId') || response.json().code === 60000) {
+                  //   localStorage.clear();
+                  //   window.location.reload();
+                  // }
                   if (response.json().code === 50013) {
                     this.getNewToken();
                   }

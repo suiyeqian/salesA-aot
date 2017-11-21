@@ -31,7 +31,7 @@ const HMR = helpers.hasProcessFlag('hot');
 const AOT = process.env.BUILD_AOT || helpers.hasNpmFlag('aot');
 const METADATA = {
   title: '销售助手',
-  baseUrl: '/',
+  baseUrl: helpers.isWebpackDevServer() ? '/' : '/bdsa/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: HMR,
   AOT: AOT
@@ -164,7 +164,7 @@ module.exports = function (options) {
          */
         {
           test: /\.scss$/,
-          use: ['to-string-loader', 'css-loader', 'sass-loader'],
+          use: ['to-string-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap'],
           exclude: [helpers.root('src', 'styles')]
         },
 
@@ -192,7 +192,15 @@ module.exports = function (options) {
         */
         {
           test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
-          use: 'file-loader'
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'assets/img/',
+              }
+            }
+          ]
         }
 
       ],

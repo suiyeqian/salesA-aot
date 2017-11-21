@@ -52,9 +52,9 @@ export class InfoComponent implements OnInit, AfterContentInit {
   setMyInfo(): void {
     let userInfo = JSON.parse(localStorage.user);
     if (userInfo.sex === '男') {
-      userInfo.avatarUrl = '/assets/img/man.png';
+      userInfo.avatarUrl = 'assets/img/man.png';
     } else {
-      userInfo.avatarUrl = '/assets/img/woman.png';
+      userInfo.avatarUrl = 'assets/img/woman.png';
     }
     this.myInfo = userInfo;
   }

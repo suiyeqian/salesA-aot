@@ -6,7 +6,6 @@ import { AuthorizeService } from './authorize.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  // private apiUrl = 'http://10.17.2.177:8886';
   // private apiUrl = 'https://xszs-test.niudingfeng.com';
   private apiUrl = window.location.origin;
   private requestUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/staff/sso';
@@ -58,9 +57,9 @@ export class AuthGuard implements CanActivate {
         return true;
       } else {
         // let user = {name: '马倩', number: 'xn087432'};
-        // localStorage.setItem('accessToken', 'eV4BEV2NzJCpj4xzimL4hcpuYeS1K6hTMulLmqcOefFdlBExduxR40SkkZ9hszmur1PDo1VmxeOxjlOtGjZg');
-        // localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
-        // localStorage.setItem('refreshToken', '0XwbikkxFBqbNEBPNU1Q0b8lLzRa5CURSxoxn8gEuMrcHUtOGLjSIiwNr6XCT2hZAQDtiAgWgwCbuVImi7zb');
+        // localStorage.setItem('accessToken', 'F9d09SoQVKh4UDKZnwBe0hhqqkgOlAE3qhokk5GTf6f3IRgoEynNe5oXwSmeUpI0HaII0ra4PqUXVPOkXysv');
+        // localStorage.setItem('weiXinDeviceId', '7ad2d863925587d9989f57048a3cf045');
+        // localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
         // localStorage.setItem('user', JSON.stringify(user));
         // return true;
         localStorage.clear();
