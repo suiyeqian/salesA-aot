@@ -53,17 +53,18 @@ export class AuthGuard implements CanActivate {
           }
        });
     } else {
+      localStorage.clear();
       if (localStorage.getItem('accessToken')) {
         return true;
       } else {
-        // let user = {name: '马倩', number: 'xn087432'};
-        // localStorage.setItem('accessToken', 'F9d09SoQVKh4UDKZnwBe0hhqqkgOlAE3qhokk5GTf6f3IRgoEynNe5oXwSmeUpI0HaII0ra4PqUXVPOkXysv');
-        // localStorage.setItem('weiXinDeviceId', '7ad2d863925587d9989f57048a3cf045');
-        // localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
-        // localStorage.setItem('user', JSON.stringify(user));
-        // return true;
-        localStorage.clear();
-        window.location.href = this.redirectUrl;
+        let user = {name: '马倩', number: 'xn087432'};
+        localStorage.setItem('accessToken', 'on8TpQYSNmnPRWKAEsR7lVbk88ZSfD6Ac4sN0ZjFrSvyD6T1XLODKmdgxyBbcG8NJ2x6TFLDVTPKaCahPxMI');
+        localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
+        localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
+        localStorage.setItem('user', JSON.stringify(user));
+        return true;
+        // localStorage.clear();
+        // window.location.href = this.redirectUrl;
       }
     }
   }

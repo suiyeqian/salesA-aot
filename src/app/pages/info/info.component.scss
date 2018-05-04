@@ -63,14 +63,26 @@
 
 // 竞争力
 .radar-chart-wrap{
-  margin-top: .59rem;
+  padding-top: .8rem;
   margin-bottom: .59rem;
+  position: relative;
 }
 .radar-chart {
   height: 6.8rem;
 }
 .remark{
   font-size: .28rem;
+}
+// help
+.help-icon{
+  width: .51rem;
+  height: .51rem;
+  position: absolute;
+  right: .2rem;
+  top: .2rem;
+  background-image: url(assets/img/help-icon.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 // timeline

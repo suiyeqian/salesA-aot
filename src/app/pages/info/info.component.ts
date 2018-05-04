@@ -1,7 +1,10 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { BackendService } from '../../core/services/backend.service';
 import { WaterMarkService } from '../../core/services/watermark.service';
+import { NgbdModalComponent } from '../../my-components/modal/modal.component';
 
 import * as echart from '../../echarts';
 
@@ -20,7 +23,8 @@ export class InfoComponent implements OnInit, AfterContentInit {
 
   constructor(
     private bdService: BackendService,
-    private waterMark: WaterMarkService
+    private waterMark: WaterMarkService,
+    private modalService: NgbModal
   ) {
   }
 
@@ -97,6 +101,11 @@ export class InfoComponent implements OnInit, AfterContentInit {
               120 * resData.length);
           }
         });
+  }
+
+  open(): void {
+    console.log(11);
+    this.modalService.open(NgbdModalComponent, { windowClass: 'fs-modal' });
   }
 
 }
