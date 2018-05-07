@@ -22,6 +22,8 @@ export class MonthPerformanceComponent implements OnInit {
   warningInfos = Object.assign({});
   bonusShow = false;
   awardShow = false;
+  private formalProgressUrl = 'performancetrack/formal-progress';
+  fullMemObj = Object.assign({});;
   @Input() timeProgress: number;
 
   constructor(
@@ -33,6 +35,7 @@ export class MonthPerformanceComponent implements OnInit {
     this.getWeeklyTrend();
     this.getAchieveForecast();
     this.getWarning();
+    this.getForamlprogress();
   }
 
   getWeeklyTrend(): void {
@@ -119,6 +122,16 @@ export class MonthPerformanceComponent implements OnInit {
             this.warningInfos = resData;
           }
         });
+  }
+
+  getForamlprogress(): void {
+    this.bdService
+        .getAll(this.formalProgressUrl)
+        .then((res) => {
+          if (res.code === 0) {
+            this.fullMemObj = res.data;
+          }
+        })
   }
 
 }

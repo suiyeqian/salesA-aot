@@ -165,7 +165,7 @@ i.bonus-status.show{
   display: inline-flex;
 }
 .time-line, .volume{
-  margin-left: 1rem;
+  margin-left: 1.1rem;
   width: 75%;
 }
 .volume-progress {
@@ -196,12 +196,12 @@ i.bonus-status.show{
   font-weight: bold;
   margin: .56rem auto 0;
 }
-.obsolete {
+.obsolete, .full {
   margin-top: .56rem;
 }
 .progress-group{
   margin-left: 13.5%;
-  width: 75%;
+  width: 73.8%;
   display: inline-block;
   margin-top: .13rem;
 }
@@ -209,4 +209,19 @@ i.bonus-status.show{
   display: inline-block;
   width: 50%;
   margin-left: -.06rem;
+}
+// .progress-group-span {
+//   margin-bottom: .33rem;
+// }
+// .progress-group-span .volume-key, .progress-group-span .volume-val{
+//   display: inline-block;
+// }
+// .progress-group-span .progress-group {
+//   margin-left: 1%;
+// }
+.time-line .text-right, .time-line .text-left{
+  padding: 0;
+}
+.full .volume-progress{
+  margin-bottom: 0;
 }

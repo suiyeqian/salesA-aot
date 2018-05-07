@@ -128,5 +128,33 @@
       <span class="font-yellow volume-val text-right">{{50 + timeProgress/2 | number:'1.0-0'}}%</span>
       <h3 class="text-center font-red">注意！本月您有被淘汰的风险！</h3>
     </div>
+    <div class="full" *ngIf="!fullMemObj.fullMem">
+      <h5>转正进度条</h5>
+      <p class="time-line row text-center">
+        <span class="col-4 text-left">0</span>
+        <span class="col-4">3个月</span>
+        <span class="col-4 text-right">6个月</span>
+      </p>
+      <span>剩余</span>
+      <div class="volume-progress">
+        <span class="volume-key">时间</span>
+        <ngb-progressbar type="customized" [value]="fullMemObj.pastDays/fullMemObj.totDays *100" [striped]="true" [animated]="true" class="volume-progress-bar">
+          <i>已过{{fullMemObj.pastDays}}天</i>
+        </ngb-progressbar>
+        <span class="font-yellow volume-val text-center">{{fullMemObj.remainDays}}</span>
+      </div>
+      <p class="time-line row text-center">
+        <span class="col-6 text-left">0</span>
+        <span class="col-6 text-right">{{fullMemObj.totCnt}}</span>
+      </p>
+      <div class="volume-progress">
+        <span class="volume-key">件数</span>
+        <ngb-progressbar type="customized" [value]="fullMemObj.cnt/fullMemObj.totCnt*100" [striped]="true" [animated]="true" class="volume-progress-bar">
+          <i>{{fullMemObj.cnt}}</i>
+        </ngb-progressbar>
+        <span class="font-yellow volume-val text-center">{{fullMemObj.remainCnt}}</span>
+      </div>
+      <h3 class="text-center font-red">{{fullMemObj.text}}</h3>
+    </div>
   </div>
 </div>
