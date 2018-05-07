@@ -101,12 +101,13 @@
         <th>借款人</th>
         <th>放款日期</th>
         <th>借款金额</th>
-        <th>本期应还</th>
+        <!-- <th>本期应还</th> -->
         <th>状态</th>
+        <th>详情</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="text-center" *ngFor = "let item of displayOverdue">
+      <tr class="text-center" *ngFor = "let item of displayOverdue; let idx = index">
         <!-- <td class="contract-no">{{item.cntNum}}</td> -->
         <td class="borrower" (click)="item.showName = ! item.showName">
           <span *ngIf="item.showName">{{item.fullName}}</span>
@@ -114,10 +115,11 @@
         </td>
         <td>{{item.dateStr}}</td>
         <td class="amount">{{+item.amt | number}}</td>
-        <td class="amount">{{+item.repayAmt | number}}</td>
+        <!-- <td class="amount">{{+item.repayAmt | number}}</td> -->
         <td *ngIf="item.status == 0 && item.days == 0">今日还款</td>
         <td *ngIf="item.status == 0 && item.days > 0">{{item.days}}日内还款</td>
         <td *ngIf="item.status == 1" class="overdue">已逾期{{item.days}}天</td>
+        <td><span class="detail" (click)="getDetail(idx)" [class.active]="activeIdx === idx">详情</span></td>
       </tr>
     </tbody>
   </table>
@@ -140,4 +142,14 @@
     </div>
   </div>
   <h3 class="text-center no-record" *ngIf="custBdReminds.length === 0" >本月暂无生日提醒</h3>
+</div>
+<div class="my-alert" *ngIf="showMyAlert" (click)="closeAlert()">
+  <div class="content">
+    <div class="content-hd">
+      本期还款日： {{alertItem.repayDate }}
+    </div>
+    <p>本期应还： ¥{{alertItem.repayAmt | number}}</p>
+    <p>还款银行： {{alertItem.bankName}}</p>
+    <p>银行卡后4位： {{alertItem.bankCardNum}}</p>
+  </div>
 </div>

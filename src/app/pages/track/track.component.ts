@@ -27,6 +27,9 @@ export class TrackComponent implements OnInit, AfterContentInit {
   overduermdCurPage = 1;
   private custBdUrl = 'performancetrack/cust_bd_remind';
   custBdReminds = [];
+  alertItem = Object.assign({});
+  showMyAlert = false;
+  activeIdx = '';
 
   constructor(
     private bdService: BackendService,
@@ -103,6 +106,16 @@ export class TrackComponent implements OnInit, AfterContentInit {
             this.custBdReminds = res.data;
           }
         });
+  }
+
+  getDetail(idx): void {
+    this.showMyAlert = true;
+    this.activeIdx = idx;
+    this.alertItem = this.displayOverdue[idx];
+  }
+  closeAlert(): void {
+    this.showMyAlert=false;
+    this.activeIdx='';
   }
 
   // 表格翻页处理

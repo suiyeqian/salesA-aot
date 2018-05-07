@@ -97,6 +97,13 @@
   font-weight: bold;
   color: #fe4504;
 }
+.table td .detail {
+  border-bottom: 1px solid #fff
+}
+.table td .detail.active {
+  color: #fdcb04;
+  border-color: #fdcb04;
+}
 .no-record {
   font-size: .53rem;
   font-weight: bolder;
@@ -166,4 +173,45 @@
 }
 .birthday-reminder .no-record {
   margin: 10% auto;
+}
+
+.my-alert {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 10000001;
+  .content {
+    width: 6.4rem;
+    height: 3.87rem;
+    background-color: #03041a;
+    width: 6.4rem;
+    height: 3.87rem;
+    background-color: #272A3A;
+    margin: 0 auto;
+    top: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 14px;
+    padding: .27rem .4rem;
+    border-radius: .4rem;
+    .content-hd {
+      color: #fdcb04;
+      height: .93rem;
+      line-height: .93rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(160, 160, 160, .5);
+      margin-bottom: .2rem;
+    }
+    p {
+      text-align: left;
+      padding-left: .93rem;
+      height: .7rem;
+      line-height: .7rem;
+    }
+  }
 }
