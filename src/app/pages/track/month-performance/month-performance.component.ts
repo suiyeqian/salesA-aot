@@ -85,7 +85,7 @@ export class MonthPerformanceComponent implements OnInit {
               }
             }
             // 计算已完成的提成系数的位置及已完成奖金
-            let cmpeAmt = resData.cmpeAmt / 10000;
+            let cmpeAmt = (resData.cmpeAmt - resData.zdLess30Amt - (resData.zdMore30Amt / 2)) / 10000;
             for (let i = resData.sections.length - 1; i >= 0; i--) {
               if (+cmpeAmt === +resData.sections[i]) {
                 this.myRealPctPosition = this.positionPoint[i] + '%';
