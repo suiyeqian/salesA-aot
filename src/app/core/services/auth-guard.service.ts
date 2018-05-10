@@ -53,18 +53,18 @@ export class AuthGuard implements CanActivate {
           }
        });
     } else {
-      localStorage.clear();
+      // localStorage.clear();
       if (localStorage.getItem('accessToken')) {
         return true;
       } else {
-        let user = {name: '马倩', number: 'xn087432'};
-        localStorage.setItem('accessToken', 'ER5Ou4XIFuips2rFkybGNnnMecVC8G4GptZaWyipsZicoW8CYj7r8V0BW6bVQ9BElSQm88EwjTvU8qjiWV3m');
-        localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
-        localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
-        localStorage.setItem('user', JSON.stringify(user));
-        return true;
-        // localStorage.clear();
-        // window.location.href = this.redirectUrl;
+        // let user = {name: '马倩', number: 'xn087432'};
+        // localStorage.setItem('accessToken', 'ER5Ou4XIFuips2rFkybGNnnMecVC8G4GptZaWyipsZicoW8CYj7r8V0BW6bVQ9BElSQm88EwjTvU8qjiWV3m');
+        // localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
+        // localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
+        // localStorage.setItem('user', JSON.stringify(user));
+        // return true;
+        localStorage.clear();
+        window.location.href = this.redirectUrl;
       }
     }
   }

@@ -8,8 +8,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class BackendService {
-  private apiUrl = 'https://xszs-test.niudingfeng.com';
-  // private apiUrl = window.location.origin;
+  // private apiUrl = 'https://xszs-test.niudingfeng.com';
+  private apiUrl = window.location.origin;
   private baseUrl = this.apiUrl + '/servegateway/rest/bdsa/';
   private refreshUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/user/access_token';
   firstOverdue = true;
