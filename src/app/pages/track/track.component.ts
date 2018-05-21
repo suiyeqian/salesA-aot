@@ -114,8 +114,8 @@ export class TrackComponent implements OnInit, AfterContentInit {
     this.alertItem = this.displayOverdue[idx];
   }
   closeAlert(): void {
-    this.showMyAlert=false;
-    this.activeIdx='';
+    this.showMyAlert = false;
+    this.activeIdx = '';
   }
 
   // 表格翻页处理

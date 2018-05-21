@@ -22,6 +22,8 @@ body {
   border-radius: 3px;
 }
 .progress-bar {
+  overflow: visible;
+  white-space: nowrap;
   height: inherit;
   line-height: inherit;
   font-size: .27rem;

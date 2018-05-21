@@ -23,7 +23,7 @@ export class MonthPerformanceComponent implements OnInit {
   bonusShow = false;
   awardShow = false;
   private formalProgressUrl = 'performancetrack/formal-progress';
-  fullMemObj = Object.assign({});;
+  fullMemObj = Object.assign({});
   @Input() timeProgress: number;
 
   constructor(
@@ -67,13 +67,13 @@ export class MonthPerformanceComponent implements OnInit {
             for (let i = resData.sections.length - 1; i >= 0; i--) {
               if (+expectAmt === +resData.sections[i]) {
                 this.myPctPosition = this.positionPoint[i] + '%';
-                resData.coefficient = resData.coefficients[i];
-                resData.royaltyAmt = resData.expectAmt * resData.coefficient / 100;
+                resData.coefficient = +resData.coefficients[i];
+                resData.royaltyAmt = resData.expectAmt * (resData.coefficient + +resData.cm2AdjustCoef) / 100;
                 break;
               }
               if (+expectAmt > +resData.sections[i]) {
-                resData.coefficient = resData.coefficients[i];
-                resData.royaltyAmt = resData.expectAmt * resData.coefficient / 100;
+                resData.coefficient = +resData.coefficients[i];
+                resData.royaltyAmt = resData.expectAmt * (resData.coefficient + +resData.cm2AdjustCoef) / 100;
                 if (i === resData.sections.length - 1) {
                   this.myPctPosition = '76%';
                   break;
@@ -89,11 +89,11 @@ export class MonthPerformanceComponent implements OnInit {
             for (let i = resData.sections.length - 1; i >= 0; i--) {
               if (+cmpeAmt === +resData.sections[i]) {
                 this.myRealPctPosition = this.positionPoint[i] + '%';
-                resData.cmpeBonus = resData.cmpeAmt * resData.coefficients[i] / 100;
+                resData.cmpeBonus = resData.cmpeAmt * (+resData.coefficients[i] + +resData.cm2AdjustCoef) / 100;
                 break;
               }
               if (+cmpeAmt > +resData.sections[i]) {
-                resData.cmpeBonus = resData.cmpeAmt * resData.coefficients[i] / 100;
+                resData.cmpeBonus = resData.cmpeAmt * (+resData.coefficients[i] + +resData.cm2AdjustCoef) / 100;
                 if (i === resData.sections.length - 1) {
                   this.myRealPctPosition = '71%';
                   break;
@@ -131,7 +131,7 @@ export class MonthPerformanceComponent implements OnInit {
           if (res.code === 0) {
             this.fullMemObj = res.data;
           }
-        })
+        });
   }
 
 }

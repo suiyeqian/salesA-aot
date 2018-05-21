@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
   // private apiUrl = 'https://xszs-test.niudingfeng.com';
   private apiUrl = window.location.origin;
   private requestUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/staff/sso';
-  private redirectUri = encodeURIComponent(this.apiUrl + '/bdsa/').toLowerCase();
+  private redirectUri = encodeURIComponent(this.apiUrl + '/bdsa/index/' + this.generateUUID()).toLowerCase();
   private appId = 1;
   private redirectUrl = this.apiUrl + '/servegateway/wxgateway/oauth2/authorize?appId=' + this.appId + '&redirectUri=' + this.redirectUri;
   headerObj = {
@@ -58,7 +58,7 @@ export class AuthGuard implements CanActivate {
         return true;
       } else {
         // let user = {name: '马倩', number: 'xn087432'};
-        // localStorage.setItem('accessToken', 'ER5Ou4XIFuips2rFkybGNnnMecVC8G4GptZaWyipsZicoW8CYj7r8V0BW6bVQ9BElSQm88EwjTvU8qjiWV3m');
+        // localStorage.setItem('accessToken', 'J2KtnNMUhrZfkmkKMHSHicoHy8M7hsVjITeX6uVd0sFlOLdYl421bwiQdpfHIoIN7ZzavgJZAHFDe7epfhDG');
         // localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
         // localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
         // localStorage.setItem('user', JSON.stringify(user));
@@ -80,6 +80,16 @@ export class AuthGuard implements CanActivate {
              return response.json();
            })
            .catch(this.handleError);
+  }
+
+  generateUUID(): string {
+   let d = new Date().getTime();
+   let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+     let r = (d + Math.random() * 16) % 16 || 0;
+     d = Math.floor(d / 16);
+     return (c === 'x' ? r : (r && 0x3 || 0x8)).toString(16);
+   });
+   return uuid.replace(/-/g, '');
   }
 
   private handleError(error: any): Promise<any> {
