@@ -6,7 +6,6 @@ import { AuthorizeService } from './authorize.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  // private apiUrl = 'https://xszs-test.niudingfeng.com';
   private apiUrl = window.location.origin;
   private requestUrl = this.apiUrl + '/servegateway/rest/bduser/weixin/staff/sso';
   private redirectUri = encodeURIComponent(this.apiUrl + '/bdsa/index/' + this.generateUUID()).toLowerCase();
@@ -57,7 +56,7 @@ export class AuthGuard implements CanActivate {
       if (localStorage.getItem('accessToken')) {
         return true;
       } else {
-        // let user = {name: '马倩', number: 'xn087432'};
+        // let user = {name: '', number: ''};
         // localStorage.setItem('accessToken', 'J2KtnNMUhrZfkmkKMHSHicoHy8M7hsVjITeX6uVd0sFlOLdYl421bwiQdpfHIoIN7ZzavgJZAHFDe7epfhDG');
         // localStorage.setItem('weiXinDeviceId', 'e05c746809aaf4fd3e053456eeaf14d3');
         // localStorage.setItem('refreshToken', 'tE97DVGSZPMJWkDcnRPpLZLNcLsn4IbYcT5DyMwSEPbrx9cHvBGUjSEW7VbB4tMTWuHvBnUEBGmEG0P6TuwI');
